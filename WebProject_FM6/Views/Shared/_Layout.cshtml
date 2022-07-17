@@ -1,0 +1,145 @@
+﻿@model WebProject_FM6.Models.EmailModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebProject_FM6</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+   @* <link rel="stylesheet" href="~/WebProject_FM6.styles.css" asp-append-version="true" />*@
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <header>
+              <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">
+                    <img src="~/assets/images/logo.png" alt="" width="30" height="24">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#Homepage">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Services">Services </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#AboutUs">About Us </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#ContactUs">Contact Us </a>
+                        </li>
+                    </ul>
+
+                    <button class="btn btn-outline-success" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">Enquire</button>
+
+                </div>
+            </div>
+        </nav>
+        <!-- off canvas -->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Enquiery</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div>
+                    @*<form>
+            <div class="form-group">
+                <label asp-for="Cell" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input asp-for="Cell" class="form-control" type="number" />
+                    <span asp-validation-for="Cell" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cell" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input asp-for="Cell" class="form-control" type="number" />
+                    <span asp-validation-for="Cell" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Service" class="col-sm-2 col-form-label"></label>
+                <select asp-for="Service" class="form-select" required>
+                    <option selected>Choose...</option>
+                    <option value="Construction Servie 1">Construction 1</option>
+                    <option value="Construction Servie 1">Construction 2</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Message" class="col-sm-2 col-form-label"></label>
+                <textarea asp-for="Service" class="form-control" rows="3" required />
+
+            </div>
+        </form>*@
+
+                    @using (Html.BeginForm("SendEmail", "Home", FormMethod.Post))
+                    {
+                        <form method="post">
+                            <div class="row mb-3 input-group">
+                                <label for="Cell" class="col-sm-3 col-form-label input-group-text">Cell :</label>
+                              
+                                    <input type="number" class="form-control" asp-for="Cell" id="Cell" required>
+                              
+                            </div>
+                            <div class="row mb-3  input-group">
+                                <label for="Service" class="col-sm-3 col-form-label  input-group-text">Service</label>
+                                <select id="Service" asp-for="Service" class="form-select" required>
+                                    <option selected>Choose...</option>
+                                    <option value="Construction 1">Construction 1</option>
+                                    <option value="Construction 2">Construction 2</option>
+                                </select>
+                            </div>
+                            <div class="row mb-3 input-group">
+                                <label value="Message" class="col-sm-3 col-form-label  input-group-text">Message</label>
+                                <textarea class="form-control" asp-for="Message" id="Message" rows="3"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Enquire</button>
+                        </form>
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - WebProject_FM6 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
